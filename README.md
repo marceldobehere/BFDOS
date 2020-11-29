@@ -12,5 +12,5 @@ command arg1 arg2
 
 
 commands supported:
-* echo (arg)
+* echo (text1)
 * exit
