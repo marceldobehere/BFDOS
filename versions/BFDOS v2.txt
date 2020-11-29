@@ -1,0 +1,265 @@
+phrase BFDOS v2
+# setting up vars
+int c_1
+int c_2
+int c_3
+int c_4
+int c_5
+int c_6
+int c_7
+int c_8
+int c_9
+int c_10
+
+int input
+int cmd_1
+int max_size
+
+set max_size 10
+intl r_cmd 10
+intl r_arg_1 10
+intl r_arg_2 10
+
+
+
+# ------------------------------------------------------------------------------------------------------
+
+
+function ld_cmd
+lclear r_cmd
+lclear r_arg_1
+lclear r_arg_2
+
+
+
+
+# cmd
+set c_1 32
+set c_2 10
+set c_3 0
+set c_4 0
+set c_5 0
+set c_6 1
+copy max_size c_7
+math c_7 - c_6
+set input 0
+
+loop c_3 = c_3
+
+math c_5 + c_6
+input input
+
+do if input = c_1
+set c_4 1
+do if c_5 < max_size
+output# 32
+stopdo
+stopdo
+do if input = c_2
+set c_4 1
+stopdo
+do if c_5 > c_7
+set c_4 1
+output# 32
+stopdo
+
+do if c_4 = c_3
+outvar input
+vvlset r_cmd c_5 input
+stopdo
+
+if c_4 = c_3 loop
+
+
+# arg_1
+set c_1 32
+set c_2 10
+set c_3 0
+set c_4 0
+set c_5 0
+set c_6 1
+
+loop input ≠ c_2
+
+math c_5 + c_6
+input input
+
+do if input = c_1
+set c_4 1
+do if c_5 < max_size
+output# 32
+stopdo
+stopdo
+do if input = c_2
+set c_4 1
+stopdo
+do if c_5 > c_7
+set c_4 1
+output# 32
+stopdo
+
+do if c_4 = c_3
+outvar input
+vvlset r_arg_1 c_5 input
+stopdo
+
+if c_4 = c_3 loop
+
+
+# arg_2
+set c_1 32
+set c_2 10
+set c_3 0
+set c_4 0
+set c_5 0
+set c_6 1
+
+loop input ≠ c_2
+
+math c_5 + c_6
+input input
+
+do if input = c_1
+set c_4 2
+do if c_5 < max_size
+output# 32
+stopdo
+stopdo
+do if input = c_2
+set c_4 1
+stopdo
+do if c_5 > c_7
+set c_4 1
+output# 32
+stopdo
+
+do if c_4 = c_3
+outvar input
+vvlset r_arg_2 c_5 input
+stopdo
+
+if c_4 = c_3 loop
+
+
+
+endfunc
+# ------------------------------------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------------------------------------
+function get_cmd
+
+set cmd_1 0
+
+# echo ---------------------------
+set c_1 0
+set c_2 1
+set c_3 69
+lsetvar r_cmd 1 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 67
+lsetvar r_cmd 2 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 72
+lsetvar r_cmd 3 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 79
+lsetvar r_cmd 4 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 4
+
+do if c_1 = c_3
+set cmd_1 1
+stopdo
+# echo ---------------------------
+
+
+# exit ---------------------------
+set c_1 0
+set c_2 1
+set c_3 69
+lsetvar r_cmd 1 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 88
+lsetvar r_cmd 2 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 73
+lsetvar r_cmd 3 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 84
+lsetvar r_cmd 4 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 4
+
+do if c_1 = c_3
+set cmd_1 2
+stopdo
+# exit ---------------------------
+
+
+
+
+
+
+
+endfunc
+# ------------------------------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------------------------------
+function run_cmd
+# echo ---------------------------
+set c_1 1
+do if cmd_1 = c_1
+set c_2 0
+copy max_size c_3
+set c_4 1
+loop c_2 = c_2
+math c_2 + c_4
+lsetvvar r_arg_1 c_2 c_5
+outvar c_5
+if c_2 ≠ c_3 loop
+
+
+stopdo
+# echo ---------------------------
+
+
+
+endfunc
+# ------------------------------------------------------------------------------------------------------
+
+set cmd_1 1
+loop cmd_1 = cmd_1
+
+nl
+output >
+func ld_cmd
+nl
+func get_cmd
+func run_cmd
+set c_1 2
+
+if cmd_1 ≠ c_1 loop
+
+nl
+phrase end.
+
+
+
+
