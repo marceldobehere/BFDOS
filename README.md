@@ -11,6 +11,7 @@ command arg1 arg2
 ```
 
 
-commands supported:
+commands supported (write in UPPERCASE):
 * echo (text)
 * exit
+* dir (has no files yet)
