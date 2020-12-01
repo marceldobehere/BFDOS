@@ -1,0 +1,472 @@
+# setting up vars
+int c_1
+int c_2
+int c_3
+int c_4
+int c_5
+int c_6
+int c_7
+int c_8
+int c_9
+int c_10
+
+int enter_button
+
+int input
+int cmd_1
+int max_size
+
+int F_D_ID
+int F_D_start
+int F_N_start
+
+set enter_button 10
+phrase Please press Enter on your Keyboard...
+input enter_button
+nl
+nl
+nl
+nl
+phrase BFDOS v6
+
+set F_D_ID 1
+set F_D_start 1
+set F_N_start 1
+
+set max_size 10
+intl r_cmd 10
+intl r_arg_1 10
+intl r_arg_2 10
+
+intl BF_ram 500
+intl BF_code 500
+
+intl F_D_start 100
+intl F_D_end 100
+intl F_N_start 100
+intl F_N_end 100
+intl Files_type 100
+intl Files_name 1000
+intl Files_data 100000
+
+
+
+# ------------------------------------------------------------------------------------------------------
+
+
+function ld_cmd
+lclear r_cmd
+lclear r_arg_1
+lclear r_arg_2
+
+
+
+
+# cmd
+set c_1 32
+copy enter_button c_2
+set c_3 0
+set c_4 0
+set c_5 0
+set c_6 1
+copy max_size c_7
+math c_7 - c_6
+set input 0
+
+loop c_3 = c_3
+
+math c_5 + c_6
+input input
+
+do if input = c_1
+set c_4 1
+do if c_5 < max_size
+output# 32
+stopdo
+stopdo
+do if input = c_2
+set c_4 1
+stopdo
+do if c_5 > c_7
+set c_4 1
+output# 32
+stopdo
+
+do if c_4 = c_3
+outvar input
+vvlset r_cmd c_5 input
+stopdo
+
+if c_4 = c_3 loop
+
+
+# arg_1
+set c_1 32
+copy enter_button c_2
+set c_3 0
+set c_4 0
+set c_5 0
+set c_6 1
+
+loop input ≠ c_2
+
+math c_5 + c_6
+input input
+
+do if input = c_1
+set c_4 1
+do if c_5 < max_size
+output# 32
+stopdo
+stopdo
+do if input = c_2
+set c_4 1
+stopdo
+do if c_5 > c_7
+set c_4 1
+output# 32
+stopdo
+
+do if c_4 = c_3
+outvar input
+vvlset r_arg_1 c_5 input
+stopdo
+
+if c_4 = c_3 loop
+
+
+# arg_2
+set c_1 32
+copy enter_button c_2
+set c_3 0
+set c_4 0
+set c_5 0
+set c_6 1
+
+loop input ≠ c_2
+
+math c_5 + c_6
+input input
+
+do if input = c_1
+set c_4 2
+do if c_5 < max_size
+output# 32
+stopdo
+stopdo
+do if input = c_2
+set c_4 1
+stopdo
+do if c_5 > c_7
+set c_4 1
+output# 32
+stopdo
+
+do if c_4 = c_3
+outvar input
+vvlset r_arg_2 c_5 input
+stopdo
+
+if c_4 = c_3 loop
+
+
+
+endfunc
+# ------------------------------------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------------------------------------
+function get_cmd
+
+set cmd_1 0
+
+# echo ---------------------------
+set c_1 0
+set c_2 1
+set c_3 69
+lsetvar r_cmd 1 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 67
+lsetvar r_cmd 2 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 72
+lsetvar r_cmd 3 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 79
+lsetvar r_cmd 4 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 4
+
+do if c_1 = c_3
+set cmd_1 1
+stopdo
+# echo ---------------------------
+
+
+# exit ---------------------------
+set c_1 0
+set c_2 1
+set c_3 69
+lsetvar r_cmd 1 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 88
+lsetvar r_cmd 2 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 73
+lsetvar r_cmd 3 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 84
+lsetvar r_cmd 4 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 4
+
+do if c_1 = c_3
+set cmd_1 2
+stopdo
+# exit ---------------------------
+
+
+# dir ---------------------------
+set c_1 0
+set c_2 1
+set c_3 68
+lsetvar r_cmd 1 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 73
+lsetvar r_cmd 2 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 82
+lsetvar r_cmd 3 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+
+set c_3 3
+do if c_1 = c_3
+set cmd_1 3
+stopdo
+# dir ---------------------------
+
+
+# new ---------------------------
+set c_1 0
+set c_2 1
+set c_3 78
+lsetvar r_cmd 1 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 69
+lsetvar r_cmd 2 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 87
+lsetvar r_cmd 3 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+
+set c_3 3
+do if c_1 = c_3
+set cmd_1 4
+stopdo
+# new ---------------------------
+
+# edit ---------------------------
+set c_1 0
+set c_2 1
+set c_3 69
+lsetvar r_cmd 1 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 68
+lsetvar r_cmd 2 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 73
+lsetvar r_cmd 3 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 84
+lsetvar r_cmd 4 c_4
+do if c_4 = c_3
+math c_1 + c_2
+stopdo
+set c_3 4
+
+do if c_1 = c_3
+set cmd_1 5
+stopdo
+# edit ---------------------------
+
+
+endfunc
+# ------------------------------------------------------------------------------------------------------
+
+
+
+# ------------------------------------------------------------------------------------------------------
+function run_cmd
+# echo ---------------------------
+set c_1 1
+do if cmd_1 = c_1
+set c_2 0
+copy max_size c_3
+set c_4 1
+loop c_2 = c_2
+math c_2 + c_4
+lsetvvar r_arg_1 c_2 c_5
+outvar c_5
+if c_2 ≠ c_3 loop
+
+stopdo
+# echo ---------------------------
+
+
+
+
+# dir ---------------------------
+set c_1 3
+do if cmd_1 = c_1
+phrase Showing Files...
+set c_2 1
+set c_1 1
+set c_3 0
+
+do if F_D_ID = c_1
+nl
+phrase There are no Files yet.
+stopdo
+
+loop F_D_ID ≠ c_1
+nl
+outvardec c_1
+output# 32
+lsetvvar F_N_start c_1 c_4
+lsetvvar F_N_end c_1 c_5
+loop c_5 ≠ c_3
+lsetvvar Files_name c_4 c_6
+outvar c_6
+math c_4 + c_2
+if c_4 ≠ c_5 loop
+
+math c_1 + c_2
+if c_1 ≠ F_D_ID loop
+
+
+
+stopdo
+# dir ---------------------------
+
+
+
+# new ---------------------------
+set c_1 4
+do if cmd_1 = c_1
+phrase Enter Filename:
+nl
+
+copy enter_button c_1
+set c_2 0
+set c_4 0
+set c_5 0
+set c_3 1
+copy max_size c_7
+math c_7 - c_6
+set input 0
+
+vvlset F_N_start F_D_ID F_N_start
+loop c_2 = c_2
+
+math c_5 + c_3
+input input
+
+do if input = c_1
+set c_4 1
+stopdo
+do if c_5 > c_7
+set c_4 1
+stopdo
+
+do if c_4 = c_2
+outvar input
+vvlset Files_name F_N_start input
+stopdo
+math F_N_start + c_3
+if c_4 = c_2 loop
+vvlset F_N_end F_D_ID F_N_start
+vvlset F_D_start F_D_ID F_D_start
+set c_4 1000
+math F_D_start + c_4
+vvlset F_D_end F_D_ID F_D_start
+math F_N_start + c_3
+math F_D_start + c_3
+math F_D_ID + c_3
+
+stopdo
+# new ---------------------------
+
+
+
+# edit ---------------------------
+set c_1 5
+do if cmd_1 = c_1
+
+
+stopdo
+# edit ---------------------------
+
+
+
+endfunc
+# ------------------------------------------------------------------------------------------------------
+
+set cmd_1 1
+loop cmd_1 = cmd_1
+
+nl
+output >
+func ld_cmd
+nl
+func get_cmd
+func run_cmd
+set c_1 0
+do if cmd_1 = c_1
+phrase Unknown Command!
+stopdo
+
+set c_1 2
+if cmd_1 ≠ c_1 loop
+
+nl
+phrase end.
+nl
+nl
+
+
+
+
