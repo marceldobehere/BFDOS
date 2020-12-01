@@ -15,4 +15,6 @@ commands supported (write in UPPERCASE):
 * echo (text)
 * exit
 * dir 
-* new
+* new (only Text file name with no data)
+* edit (not working)
+* help
